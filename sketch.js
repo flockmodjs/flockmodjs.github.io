@@ -45,7 +45,7 @@ function draw() {
     c = get(mouseX, mouseY); // get the color under the mouse
   }
 
-  if(mouseX < 100 && mouseY < 100) {
+  if(mouseX < 105 && mouseY < 100) {
     cursor(CROSS);
   }
   
