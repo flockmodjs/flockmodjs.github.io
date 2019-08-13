@@ -30,7 +30,7 @@ function setup() {
   });
   bwidth = createSlider(0, 50, 10);
   bwidth.position(110, 30);
-  img = loadImage('grad.jpg');
+  img = loadImage('https://github.com/flockmodjs/flockmodjs.github.io/blob/master/grad.jpg?raw=true');
   createCanvas(window.innerWidth, window.innerHeight - 4);
   background(255);
   text("Brush Width", 110, 20);
