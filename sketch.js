@@ -41,7 +41,7 @@ function setup() {
 function draw() {
   image(img, 0, 0, 100, 100);
   cursor('grab');
-  if (mouseIsPressed && mouseX < 100 && mouseY < 100) {
+  if (mouseIsPressed && mouseX < 105 && mouseY < 100) {
     c = get(mouseX, mouseY); // get the color under the mouse
   }
 
