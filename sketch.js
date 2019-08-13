@@ -34,6 +34,8 @@ function setup() {
   createCanvas(window.innerWidth, window.innerHeight - 4);
   background(255);
   text("Brush Width", 110, 20);
+  
+  cursor('grab');
 }
 
 function draw() {
