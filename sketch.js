@@ -34,16 +34,21 @@ function setup() {
   createCanvas(window.innerWidth, window.innerHeight - 4);
   background(255);
   text("Brush Width", 110, 20);
-  
-  cursor('grab');
+
+
 }
 
 function draw() {
   image(img, 0, 0, 100, 100);
-
+  cursor('grab');
   if (mouseIsPressed && mouseX < 100 && mouseY < 100) {
     c = get(mouseX, mouseY); // get the color under the mouse
   }
+
+  if(mouseX < 100 && mouseY < 100) {
+    cursor(CROSS);
+  }
+  
 
   if (mouseIsPressed) {
     if (mouseX < window.innerWidth && mouseY > 100) {
@@ -53,11 +58,12 @@ function draw() {
       fill(r, g, b);
       smooth(); //why not
       noStroke();
-      if (brush==="circle") {
+
+      if (brush === "circle") {
         circle(mouseX, mouseY, bwidth.value());
         socket.emit('draw_circle', [mouseX, mouseY, bwidth.value(), r, g, b]);
       }
-      if (brush==="rect") {
+      if (brush === "rect") {
         rect(mouseX, mouseY, bwidth.value(), bwidth.value());
         socket.emit('draw_rect', [mouseX, mouseY, bwidth.value(), r, g, b]);
       }
