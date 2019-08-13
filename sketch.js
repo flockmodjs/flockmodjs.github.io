@@ -28,7 +28,7 @@ function setup() {
     text("Brush Width", 110, 20);
     socket.emit('clear', 'do it bro!');
   });
-  bwidth = createSlider(0, 50, 10);
+  bwidth = createSlider(0, 100, 10);
   bwidth.position(110, 30);
   img = loadImage('grad.jpg');
   createCanvas(window.innerWidth, window.innerHeight - 4);
