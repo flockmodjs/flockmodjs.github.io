@@ -60,6 +60,12 @@ function draw() {
   cursor('grab');
   if (mouseIsPressed && mouseX < 105 && mouseY < 100) {
     c = get(mouseX, mouseY); // get the color under the mouse
+    rectMode(CORNER);
+    noStroke();
+    fill(255);
+    rect(200,10,100,20);
+    fill(0);
+    text(red(c)+","+green(c)+","+blue(c), 200,20);
   }
 
   if(mouseX < 105 && mouseY < 100) {
@@ -91,6 +97,7 @@ function draw() {
       }
       if (brush === "rect") {
         noStroke();
+        rectMode(CENTER);
         rect(mouseX, mouseY, bwidth.value(), bwidth.value());
         socket.emit('draw_rect', [mouseX, mouseY, bwidth.value(), r, g, b]);
         ss.push([mouseX, mouseY, bwidth.value(), r, g, b]);
