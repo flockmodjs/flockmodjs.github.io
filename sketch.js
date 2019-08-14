@@ -86,6 +86,7 @@ function draw() {
   }
 }
 socket.on('clear', function(data) {
+  noStroke();
   background(255);
   fill(0);
   text("Brush Width", 110, 20);
