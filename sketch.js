@@ -130,10 +130,10 @@ socket.on('connected', function(data) {
     socket.emit('draw_circle', cs[i]);
   }
   for (var j = 0; j < ls.length; j++) {
-    socket.emit('draw_line', ls[i]);
+    socket.emit('draw_line', ls[j]);
   }
   for (var k = 0; k < ss.length; k++) {
-    socket.emit('draw_rect', ss[i]);
+    socket.emit('draw_rect', ss[k]);
   }
 });
 socket.on('clear', function(data) {
