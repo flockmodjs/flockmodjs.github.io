@@ -62,7 +62,7 @@ function draw() {
     c = get(mouseX, mouseY); // get the color under the mouse
     rectMode(CORNER);
     noStroke();
-    fill(255);
+    fill(red(c),green(c),blue(c));
     rect(200,10,100,20);
     fill(0);
     text(red(c)+","+green(c)+","+blue(c), 200,20);
