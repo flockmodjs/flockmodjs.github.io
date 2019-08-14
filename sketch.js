@@ -7,7 +7,7 @@ let rbrush;
 let cbrush;
 let lbrush;
 let pick;
-var brush = "circle";
+var brush = "line";
 var picking=false;
 var cs=[];
 var ls=[];
