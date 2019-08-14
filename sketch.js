@@ -7,6 +7,9 @@ let rbrush;
 let cbrush;
 let lbrush;
 var brush = "circle";
+var cs=[];
+var ls=[];
+var ss=[];
 
 function setup() {
   rectMode(CENTER);
@@ -70,21 +73,35 @@ function draw() {
         noStroke();
         circle(mouseX, mouseY, bwidth.value());
         socket.emit('draw_circle', [mouseX, mouseY, bwidth.value(), r, g, b]);
+        cs.push([mouseX, mouseY, bwidth.value(), r, g, b]);
       }
       if (brush === "rect") {
         noStroke();
         rect(mouseX, mouseY, bwidth.value(), bwidth.value());
         socket.emit('draw_rect', [mouseX, mouseY, bwidth.value(), r, g, b]);
+        ss.push([mouseX, mouseY, bwidth.value(), r, g, b]);
       }
       if (brush === "line") {
         stroke(r,g,b);
         strokeWeight(bwidth.value());
         line(mouseX, mouseY, pmouseX, pmouseY);
         socket.emit('draw_line', [mouseX, mouseY, pmouseX, pmouseY,r,g,b,bwidth.value()]);
+        ls.push([mouseX, mouseY, pmouseX, pmouseY,r,g,b,bwidth.value()]);
       }
     }
   }
 }
+socket.on('connected', function(data){
+  for(var i=0;i<cs.length;i++){
+    socket.emit('draw_circle',cs[i]);
+  }
+  for(var j=0;j<ls.length;j++){
+    socket.emit('draw_line',ls[i]);
+  }
+  for(var k=0;k<ss.length;k++){
+    socket.emit('draw_rect',ss[i]);
+  }
+});
 socket.on('clear', function(data) {
   noStroke();
   background(255);
