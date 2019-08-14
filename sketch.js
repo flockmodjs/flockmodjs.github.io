@@ -5,11 +5,17 @@ let bwidth;
 let clearc;
 let rbrush;
 let cbrush;
+let lbrush;
 var brush = "circle";
 
 function setup() {
   rectMode(CENTER);
   c = get(0, 0);
+  lbrush = createButton('Line Brush');
+  lbrush.position(395, 60);
+  lbrush.mousePressed(function() {
+    brush = "line";
+  });
   cbrush = createButton('Circle Brush');
   cbrush.position(295, 60);
   cbrush.mousePressed(function() {
@@ -25,6 +31,7 @@ function setup() {
   clearc.mousePressed(function() {
     background(255);
     fill(0);
+    noStroke();
     text("Brush Width", 110, 20);
     socket.emit('clear', 'do it bro!');
   });
@@ -60,12 +67,20 @@ function draw() {
       noStroke();
 
       if (brush === "circle") {
+        noStroke();
         circle(mouseX, mouseY, bwidth.value());
         socket.emit('draw_circle', [mouseX, mouseY, bwidth.value(), r, g, b]);
       }
       if (brush === "rect") {
+        noStroke();
         rect(mouseX, mouseY, bwidth.value(), bwidth.value());
         socket.emit('draw_rect', [mouseX, mouseY, bwidth.value(), r, g, b]);
+      }
+      if (brush === "line") {
+        stroke(r,g,b);
+        strokeWeight(bwidth.value());
+        line(mouseX, mouseY, pmouseX, pmouseY);
+        socket.emit('draw_line', [mouseX, mouseY, pmouseX, pmouseY,r,g,b,bwidth.value()]);
       }
     }
   }
@@ -74,6 +89,12 @@ socket.on('clear', function(data) {
   background(255);
   fill(0);
   text("Brush Width", 110, 20);
+});
+socket.on('draw_line', function(data){
+  stroke(data[4], data[5], data[6]);
+  strokeWeight(data[7]);
+  line(data[0],data[1],data[2],data[3]);
+  noStroke();
 });
 socket.on('draw_circle', function(data) {
   noStroke();
