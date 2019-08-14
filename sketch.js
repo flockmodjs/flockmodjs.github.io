@@ -107,6 +107,9 @@ socket.on('clear', function(data) {
   background(255);
   fill(0);
   text("Brush Width", 110, 20);
+  ls=[];
+  cs=[];
+  ss=[];
 });
 socket.on('draw_line', function(data){
   stroke(data[4], data[5], data[6]);
