@@ -6,7 +6,9 @@ let clearc;
 let rbrush;
 let cbrush;
 let lbrush;
+let pick;
 var brush = "circle";
+var picking=false;
 var cs=[];
 var ls=[];
 var ss=[];
@@ -14,6 +16,11 @@ var ss=[];
 function setup() {
   rectMode(CENTER);
   c = get(0, 0);
+  pick = createButton('Pick Colour');
+  pick.position(480, 60);
+  pick.mousePressed(function() {
+    picking=true;
+  });
   lbrush = createButton('Line Brush');
   lbrush.position(395, 60);
   lbrush.mousePressed(function() {
@@ -61,7 +68,14 @@ function draw() {
   
 
   if (mouseIsPressed) {
-    if (mouseX < window.innerWidth && mouseY > 100) {
+    if(mouseY > 100 &&picking){
+      c=get(mouseX, mouseY);
+      console.log(c);
+      picking=false;
+    }
+    
+    if (mouseX < window.innerWidth && mouseY > 100 && !picking) {
+      
       let r = red(c); // get the red channel
       let g = green(c); // get the green channel
       let b = blue(c); // get the blue channel
