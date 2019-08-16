@@ -39,6 +39,7 @@ function setup() {
   clearc = createButton('Clear');
   clearc.position(110, 60);
   clearc.mousePressed(function() {
+    socket.emit('clear', "do it bro");
     clearnow();
   });
   bwidth = createSlider(0, 100, 10);
@@ -56,7 +57,7 @@ function clearnow() {
   fill(0);
   noStroke();
   text("Brush Width", 110, 20);
-  socket.emit('clear', 'do it bro!');
+  
   rectMode(CORNER);
   noStroke();
   fill(red(c), green(c), blue(c));
