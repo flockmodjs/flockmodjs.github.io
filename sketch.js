@@ -40,11 +40,10 @@ function setup() {
   clearc.position(110, 60);
   clearc.mousePressed(function() {
     clearnow();
-    socket.emit('clear', 'do it bro!');
   });
   bwidth = createSlider(0, 100, 10);
   bwidth.position(110, 30);
-  img = loadImage('grad.png');
+  img = loadImage('grad.jpg');
   createCanvas(window.innerWidth, window.innerHeight - 4);
   background(255);
   text("Brush Width", 110, 20);
@@ -57,7 +56,7 @@ function clearnow() {
   fill(0);
   noStroke();
   text("Brush Width", 110, 20);
-  
+  socket.emit('clear', 'do it bro!');
   rectMode(CORNER);
   noStroke();
   fill(red(c), green(c), blue(c));
@@ -145,7 +144,8 @@ socket.on('draw_line', function(data) {
   strokeWeight(data[7]);
   line(data[0], data[1], data[2], data[3]);
   noStroke();
-  ls.push(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+  console.log();
+  ls.push([data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
 });
 socket.on('draw_circle', function(data) {
   noStroke();
