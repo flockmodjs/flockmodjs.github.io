@@ -43,7 +43,7 @@ function setup() {
   });
   bwidth = createSlider(0, 100, 10);
   bwidth.position(110, 30);
-  img = loadImage('grad.png');
+  img = loadImage('grad.jpg');
   createCanvas(window.innerWidth, window.innerHeight - 4);
   background(255);
   text("Brush Width", 110, 20);
@@ -144,18 +144,20 @@ socket.on('draw_line', function(data) {
   strokeWeight(data[7]);
   line(data[0], data[1], data[2], data[3]);
   noStroke();
-  console.log();
+  console.log("line: "+[data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
   ls.push([data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
 });
 socket.on('draw_circle', function(data) {
   noStroke();
   fill(data[3], data[4], data[5]);
   circle(data[0], data[1], data[2]);
+  console.log("circle: "+[data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
   cs.push(data[0], data[1], data[2], data[3], data[4], data[5]);
 });
 socket.on('draw_rect', function(data) {
   noStroke();
   fill(data[3], data[4], data[5]);
   rect(data[0], data[1], data[2], data[2]);
+  console.log("rectangle: "+[data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
   ss.push(data[0], data[1], data[2], data[3], data[4], data[5]);
 });
