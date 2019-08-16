@@ -12,8 +12,11 @@ var picking = false;
 var cs = [];
 var ls = [];
 var ss = [];
+var room;
 
 function setup() {
+  room=window.location.href.split('=')[1];
+  socket.emit('join', room);
   rectMode(CENTER);
   c = get(0, 0);
   pick = createButton('Pick Colour');
@@ -44,7 +47,7 @@ function setup() {
   });
   bwidth = createSlider(0, 100, 10);
   bwidth.position(110, 30);
-  img = loadImage('grad.png');
+  img = loadImage('grad.jpg');
   createCanvas(window.innerWidth, window.innerHeight - 4);
   background(255);
   text("Brush Width", 110, 20);
