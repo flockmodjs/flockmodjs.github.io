@@ -152,12 +152,12 @@ socket.on('draw_circle', function(data) {
   fill(data[3], data[4], data[5]);
   circle(data[0], data[1], data[2]);
   console.log("circle: "+[data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
-  cs.push(data[0], data[1], data[2], data[3], data[4], data[5]);
+  cs.push([data[0], data[1], data[2], data[3], data[4], data[5]]);
 });
 socket.on('draw_rect', function(data) {
   noStroke();
   fill(data[3], data[4], data[5]);
   rect(data[0], data[1], data[2], data[2]);
   console.log("rectangle: "+[data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
-  ss.push(data[0], data[1], data[2], data[3], data[4], data[5]);
+  ss.push([data[0], data[1], data[2], data[3], data[4], data[5]]);
 });
