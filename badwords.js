@@ -6,7 +6,7 @@ var localList;
 $.getJSON('https://raw.githubusercontent.com/lockness-Ko/badwords/master/lib/lang.json', function(data) {
     localList=data;
 });
-
+}
 class Filter {
 
   /**
@@ -82,5 +82,4 @@ class Filter {
   removeWords() {
     this.exclude.push(...Array.from(arguments).map(word => word.toLowerCase()));
   }
-}
 }
