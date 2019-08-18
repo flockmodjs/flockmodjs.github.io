@@ -1,7 +1,8 @@
 //document.head.innerHTML = document.head.innerHTML+'<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>';
 //you need jquery
-window.onload = function(){
 var localList;
+window.onload = function(){
+
 
 $.getJSON('https://raw.githubusercontent.com/lockness-Ko/badwords/master/lib/lang.json', function(data) {
     localList=data;
