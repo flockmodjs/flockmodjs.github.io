@@ -169,9 +169,9 @@ socket.on('msg', function(data) {
   noStroke();
   rectMode(CORNER);
   fill(255);
-  rect(450, 0, 300, 30);
+  rect(550, 0, 300, 30);
   fill(0);
-  text("Person says: " + data, 450, 20);
+  text("Person says: " + data, 550, 20);
   rectMode(CENTER);
 });
 socket.on('connected', function(data) {
