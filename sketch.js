@@ -150,7 +150,7 @@ socket.on('msg', function(data){
   noStroke();
   rectMode(CORNER);
   fill(255);
-  rect(450,0,200,30);
+  rect(450,0,300,30);
   fill(0);
   text("Person says: "+data,450,20);
   rectMode(CENTER);
