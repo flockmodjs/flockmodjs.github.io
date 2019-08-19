@@ -6,17 +6,28 @@ let clearc;
 let rbrush;
 let cbrush;
 let lbrush;
+let chatin;
+let send;
 let pick;
 var brush = "line";
 var picking = false;
 var cs = [];
 var ls = [];
 var ss = [];
+var cleaner;
 var room;
 
 function setup() {
-  room=window.location.href.split('=')[1];
-  socket.emit('join', room);
+  room='';//window.location.href.split('=')[1];
+  //socket.emit('join', room);
+  cleaner = new Filter();
+  send = createButton('Send');
+  send.position(360,6);
+  send.mousePressed(function(){
+    sendm(chatin.value());
+  });
+  chatin = createInput('Chat');
+  chatin.position(200,6);
   rectMode(CENTER);
   c = get(0, 0);
   pick = createButton('Pick Colour');
@@ -47,12 +58,16 @@ function setup() {
   });
   bwidth = createSlider(0, 100, 10);
   bwidth.position(110, 30);
-  img = loadImage('grad.png');
+  img = loadImage('grad.jpg');
   createCanvas(window.innerWidth, window.innerHeight - 4);
   background(255);
   text("Brush Width", 110, 20);
 
 
+}
+
+function sendm(msg){
+  socket.emit('msg', cleaner.clean(msg));
 }
 
 function clearnow() {
@@ -129,6 +144,16 @@ function draw() {
     }
   }
 }
+socket.on('msg', function(data){
+  console.log(data);
+  noStroke();
+  rectMode(CORNER);
+  fill(255);
+  rect(450,0,200,30);
+  fill(0);
+  text("Person says: "+data,450,20);
+  rectMode(CENTER);
+});
 socket.on('connected', function(data) {
   for (var i = 0; i < cs.length; i++) {
     socket.emit('draw_circle', cs[i]);
