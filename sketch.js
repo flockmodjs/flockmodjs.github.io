@@ -9,6 +9,7 @@ let lbrush;
 let chatin;
 let send;
 let pick;
+let dnldlink;
 var brush = "line";
 var picking = false;
 var cs = [];
@@ -16,18 +17,34 @@ var ls = [];
 var ss = [];
 var cleaner;
 var room;
+var cleaning = false;
+let downloadb;
+
+function download() {
+  var download = document.getElementById("download");
+  var image = document.getElementById("defaultCanvas0").toDataURL("image/png").replace("image/png", "image/octet-stream");
+  download.setAttribute("href", image);
+  download.click();
+}
 
 function setup() {
-  room=window.location.href.split('.i')[1];
+  room = window.location.href.split('.i')[1];
   socket.emit('join', room);
-  
+  dnldlink = createElement('a');
+  dnldlink.position(0,0);
+  dnldlink.html('<a id="download" download="flockmodjs.png"></a>')
+  downloadb = createButton('Download');
+  downloadb.position(440,6);
+  downloadb.mousePressed(function() {
+    download();
+  });
   send = createButton('Send');
-  send.position(360,6);
-  send.mousePressed(function(){
+  send.position(360, 6);
+  send.mousePressed(function() {
     sendm(chatin.value());
   });
   chatin = createInput('Chat');
-  chatin.position(200,6);
+  chatin.position(200, 6);
   rectMode(CENTER);
   c = get(0, 0);
   pick = createButton('Pick Colour');
@@ -66,8 +83,10 @@ function setup() {
 
 }
 
-function sendm(msg){
-  cleaner = new Filter({ placeHolder: '卐'});
+function sendm(msg) {
+  cleaner = new Filter({
+    placeHolder: '卐'
+  });
   socket.emit('msg', cleaner.clean(msg));
 }
 
@@ -76,7 +95,7 @@ function clearnow() {
   fill(0);
   noStroke();
   text("Brush Width", 110, 20);
-  
+
   rectMode(CORNER);
   noStroke();
   fill(red(c), green(c), blue(c));
@@ -145,14 +164,14 @@ function draw() {
     }
   }
 }
-socket.on('msg', function(data){
+socket.on('msg', function(data) {
   console.log(data);
   noStroke();
   rectMode(CORNER);
   fill(255);
-  rect(450,0,300,30);
+  rect(450, 0, 300, 30);
   fill(0);
-  text("Person says: "+data,450,20);
+  text("Person says: " + data, 450, 20);
   rectMode(CENTER);
 });
 socket.on('connected', function(data) {
@@ -174,20 +193,20 @@ socket.on('draw_line', function(data) {
   strokeWeight(data[7]);
   line(data[0], data[1], data[2], data[3]);
   noStroke();
-  console.log("line: "+[data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
+  console.log("line: " + [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
   ls.push([data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
 });
 socket.on('draw_circle', function(data) {
   noStroke();
   fill(data[3], data[4], data[5]);
   circle(data[0], data[1], data[2]);
-  console.log("circle: "+[data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
+  console.log("circle: " + [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
   cs.push([data[0], data[1], data[2], data[3], data[4], data[5]]);
 });
 socket.on('draw_rect', function(data) {
   noStroke();
   fill(data[3], data[4], data[5]);
   rect(data[0], data[1], data[2], data[2]);
-  console.log("rectangle: "+[data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
+  console.log("rectangle: " + [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]]);
   ss.push([data[0], data[1], data[2], data[3], data[4], data[5]]);
 });
