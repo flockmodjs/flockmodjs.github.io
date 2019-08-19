@@ -17,10 +17,6 @@ var ss = [];
 var cleaner;
 var room;
 
-window.onload=function(){
-cleaner = new Filter();
-}
-
 function setup() {
   room='';//window.location.href.split('=')[1];
   //socket.emit('join', room);
@@ -71,6 +67,7 @@ function setup() {
 }
 
 function sendm(msg){
+  cleaner = new Filter();
   socket.emit('msg', cleaner.clean(msg));
 }
 
