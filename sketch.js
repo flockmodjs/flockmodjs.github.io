@@ -18,8 +18,8 @@ var cleaner;
 var room;
 
 function setup() {
-  room='';//window.location.href.split('=')[1];
-  //socket.emit('join', room);
+  room=window.location.href.split('.i')[1];
+  socket.emit('join', room);
   
   send = createButton('Send');
   send.position(360,6);
