@@ -87,7 +87,7 @@ function sendm(msg) {
   cleaner = new Filter({
     placeHolder: '卐'
   });
-  socket.emit('msg', cleaner.clean(msg));
+  socket.emit('msg', [socket.id,cleaner.clean(msg)]);
 }
 
 function clearnow() {
@@ -165,13 +165,13 @@ function draw() {
   }
 }
 socket.on('msg', function(data) {
-  console.log(data);
+  console.log(data[1]);
   noStroke();
   rectMode(CORNER);
   fill(255);
   rect(550, 0, 300, 30);
   fill(0);
-  text("Person says: " + data, 550, 20);
+  text(data[0]+" says: " + data[1], 550, 20);
   rectMode(CENTER);
 });
 socket.on('connected', function(data) {
