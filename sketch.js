@@ -67,7 +67,7 @@ function setup() {
 }
 
 function sendm(msg){
-  cleaner = new Filter();
+  cleaner = new Filter({ placeHolder: '卐'});
   socket.emit('msg', cleaner.clean(msg));
 }
 
