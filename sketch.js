@@ -17,10 +17,14 @@ var ss = [];
 var cleaner;
 var room;
 
+window.onload=function(){
+cleaner = new Filter();
+}
+
 function setup() {
   room='';//window.location.href.split('=')[1];
   //socket.emit('join', room);
-  cleaner = new Filter();
+  
   send = createButton('Send');
   send.position(360,6);
   send.mousePressed(function(){
