@@ -111,7 +111,7 @@ function clearnow() {
 
 function draw() {
   image(img, 0, 0, 100, 100);
-  text("IF UR A FLOCKMOD DEV PLS GOTO THE GITHUB AND CONTRIBUTE!!!!!")
+  text("IF UR A FLOCKMOD DEV PLS GOTO THE GITHUB AND CONTRIBUTE!!!!!",580,70)
   cursor('grab');
   if (mouseIsPressed && mouseX < 105 && mouseY < 100) {
     c = get(mouseX, mouseY); // get the color under the mouse
