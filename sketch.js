@@ -111,6 +111,8 @@ function clearnow() {
 
 function draw() {
   image(img, 0, 0, 100, 100);
+  fill(0);
+  noStroke();
   text("IF UR A FLOCKMOD DEV PLS GOTO THE GITHUB AND CONTRIBUTE!!!!!",580,70)
   cursor('grab');
   if (mouseIsPressed && mouseX < 105 && mouseY < 100) {
