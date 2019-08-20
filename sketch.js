@@ -30,6 +30,7 @@ function download() {
 function setup() {
   room = window.location.href.split('.i')[1];
   socket.emit('join', room);
+  if(room!="o/"){document.title=document.title+" - "+room.split('?')[1];}
   dnldlink = createElement('a');
   dnldlink.position(0,0);
   dnldlink.html('<a id="download" download="flockmodjs.png"></a>')
