@@ -86,7 +86,7 @@ function setup() {
 
 function sendm(msg) {
   cleaner = new Filter({
-    placeHolder: 'no'//maybe this: 卐
+    placeHolder: 'nonoword'//maybe this: 卐
   });
   socket.emit('msg', [socket.id,cleaner.clean(msg)]);
 }
