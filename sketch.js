@@ -110,7 +110,6 @@ function clearnow() {
 
 function draw() {
   image(img, 0, 0, 100, 100);
-  text("for rooms goto: https://flockmodjs.gihub.io/?<the room name>", 550, 40);
   cursor('grab');
   if (mouseIsPressed && mouseX < 105 && mouseY < 100) {
     c = get(mouseX, mouseY); // get the color under the mouse
