@@ -46,10 +46,6 @@ function setup() {
   });
   chatin = createInput('Chat');
   chatin.position(200, 6);
-  chatin.id="bruh";
-  document.getElementById("bruh").keyup=function(e){
-    if(e.keyCode===13){send.click();}
-  };
   rectMode(CENTER);
   c = get(0, 0);
   pick = createButton('Pick Colour');
