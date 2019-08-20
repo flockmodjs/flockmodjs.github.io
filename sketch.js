@@ -129,7 +129,7 @@ function draw() {
     cursor(CROSS);
   }
 
-
+  chatin.value(cleaner.clean(chatin.value()));
   if (mouseIsPressed) {
     if (mouseY > 100 && picking) {
       c = get(mouseX, mouseY);
