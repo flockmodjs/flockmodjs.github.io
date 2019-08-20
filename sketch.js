@@ -131,7 +131,6 @@ function draw() {
   if (mouseIsPressed) {
     if (mouseY > 100 && picking) {
       c = get(mouseX, mouseY);
-      console.log(c);
       picking = false;
     }
 
