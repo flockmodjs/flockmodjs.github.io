@@ -20,6 +20,12 @@ var room;
 var cleaning = false;
 let downloadb;
 
+window.onload=function(){
+cleaner = new Filter({
+    placeHolder: 'no'
+  });
+};
+
 function download() {
   var download = document.getElementById("download");
   var image = document.getElementById("defaultCanvas0").toDataURL("image/png").replace("image/png", "image/octet-stream");
@@ -128,9 +134,7 @@ function draw() {
   if (mouseX < 105 && mouseY < 100) {
     cursor(CROSS);
   }
-  cleaner = new Filter({
-    placeHolder: 'no'
-  });
+  
   chatin.value(cleaner.clean(chatin.value()));
   if (mouseIsPressed) {
     if (mouseY > 100 && picking) {
