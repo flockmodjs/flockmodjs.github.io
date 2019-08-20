@@ -86,7 +86,7 @@ function setup() {
 
 function sendm(msg) {
   cleaner = new Filter({
-    placeHolder: '卐'
+    placeHolder: 'no'//maybe this: 卐
   });
   socket.emit('msg', [socket.id,cleaner.clean(msg)]);
 }
@@ -128,7 +128,9 @@ function draw() {
   if (mouseX < 105 && mouseY < 100) {
     cursor(CROSS);
   }
-
+  cleaner = new Filter({
+    placeHolder: 'no'
+  });
   chatin.value(cleaner.clean(chatin.value()));
   if (mouseIsPressed) {
     if (mouseY > 100 && picking) {
