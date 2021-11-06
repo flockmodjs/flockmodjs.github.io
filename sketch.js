@@ -5,7 +5,7 @@ let bwidth;
 let clearc;
 let rbrush;
 let cbrush;
-let lbrush;
+let lbrush; 
 let chatin;
 let send;
 let pick;
