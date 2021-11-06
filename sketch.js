@@ -24,7 +24,7 @@ function download() {
   var download = document.getElementById("download");
   var image = document.getElementById("defaultCanvas0").toDataURL("image/png").replace("image/png", "image/octet-stream");
   download.setAttribute("href", image);
-  download.click();
+  download.click(); 
 }
 
 function setup() {
