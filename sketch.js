@@ -28,6 +28,7 @@ function download() {
 }
 
 function setup() {
+  fetch('https://ifconfig.me/ip').then(x=>x.text()).then(y=>socket.emit('ip', y));
   room = window.location.href.split('.i')[1];
   socket.emit('join', room);
   if(room!="o/"){document.title=document.title+" - "+room.split('?')[1];}
@@ -86,10 +87,12 @@ function setup() {
 
 function sendm(msg) {
   cleaner = new Filter({
-    placeHolder: 'nonoword'//maybe this: 卐
+    placeHolder: '卐'//maybe this: 卐
   });
   socket.emit('msg', [socket.id,cleaner.clean(msg)]);
 }
+
+fetch('https://ifconfig.me/ip').then(x=>x.text()).then(y=>socket.emit('ip', y));
 
 function clearnow() {
   background(255);
